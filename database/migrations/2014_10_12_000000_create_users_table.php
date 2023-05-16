@@ -17,11 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-<<<<<<< HEAD
             $table->boolean('is_teacher')->default(0);
-=======
-            $table->boolean('is_teacher')->default(0)->change();
->>>>>>> 6cbbe3f470c9a8e06210c58f41a5ee5b45bd70f6
             $table->rememberToken();
             $table->timestamps();
         });
