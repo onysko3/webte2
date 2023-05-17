@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let showTask = document.getElementById("math");
     console.log(task);
-    showTask.innerText = task.task;
+    showTask.innerText = task.assignment;
 
     renderMathInElement(document.getElementById("math"), {
         // customised options
@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
         throwOnError : false
     });
 
-    if (task.img_path != null){
+    if (task.img_name != null){
         let showImg = document.createElement("img");
-        showImg.src = task.img_path;
+        showImg.src = task.img_name;
         document.getElementById("task").append(showImg);
     }
 
@@ -37,12 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-let result = 'y(t)=\\dfrac{1}{12} - \\dfrac{3}{2}e^{-t} + \\dfrac{1}{6}e^{-3t} + \\dfrac{1}{4}e^{-4t} = 0.0833 -1.5 e^{-t} + 0.1666 e^{-3t} + 0.25 e^{-4t}';
-result = result.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
-let results = result.split("=");
-for (let i = 0; i<3; i++){
-    results[i] = nerdamer.convertFromLaTeX(results[i]);
-}
+
 //result = nerdamer.convertFromLaTeX(result);
 
 //result = nerdamer(result.text('simplify'));
@@ -75,27 +70,39 @@ function createEditor(){
     button.setAttribute("type", "button");
     button.classList.add("btn");
     button.classList.add("btn-danger");
-    button.setAttribute("onclick", "getEq()");
+    button.setAttribute("onclick", "resultEquals()");
     button.innerText = "Odoslať riešenie"
     editorDiv.append(button);
     document.getElementById("editorBody").append(editorDiv);
 
 }
 
-function getEq(){
-    console.log(results);
+function resultEquals(){
+
+    //let result = 'y(t)=\\dfrac{1}{12} - \\dfrac{3}{2}e^{-t} + \\dfrac{1}{6}e^{-3t} + \\dfrac{1}{4}e^{-4t} = 0.0833 -1.5 e^{-t} + 0.1666 e^{-3t} + 0.25 e^{-4t}';
+    let correctResults = task.results;
+    correctResults = correctResults.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
+    let results = correctResults.split("=");
+    for (let i = 0; i<results.length; i++){
+        //console.log(results[i]);
+        results[i] = nerdamer.convertFromLaTeX(results[i]);
+
+    }
 
     let resultInput = document.getElementById("latexInput").innerText.toString();
     resultInput = resultInput.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
     resultInput = nerdamer.convertFromLaTeX(resultInput);
 
-
-    console.log(results[1]);
-    console.log(resultInput);
+    let w = false;
     for (let i = 0; i < results.length; i++){
         if (resultInput.eq(results[i])){
             console.log("correct " + i);
+            w = true;
+            break;
         }
+    }
+    if (!w){
+        console.log("incorrect");
     }
 
 }
