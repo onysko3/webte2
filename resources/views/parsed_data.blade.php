@@ -24,7 +24,7 @@
                     <td>{{ $task['task_code'] }}</td>
                     <td>{!! $task['task_description'] !!}</td>
                     <td>{!! $task['image_path'] !!}</td>
-                    <td>{!! $task['equation'] !!}</td>
+                    <td>{!! $task['solution_equation'] !!}</td>
                 </tr>
             @endforeach
         </tbody>
