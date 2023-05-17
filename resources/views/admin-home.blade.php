@@ -53,6 +53,12 @@
                                     <label for="points">Points:</label>
                                     <input type="text" name="points" value="{{ $set->points }}">
 
+                                    <label for="available_to_generate">Available to generate:</label>
+                                    <input type="checkbox" name="available_to_generate" value="1" {{ $set->available_to_generate ? 'checked' : '' }}>
+
+                                    <label for="available_to">Available to:</label>
+                                    <input type="datetime-local" name="available_to" value="{{ $set->available_to ? (new DateTime($set->available_to))->format('Y-m-d\TH:i:s') : '' }}">
+
                                     <button class="btn btn-primary" type="submit">Update</button>
                                 </div>
                             </form>
@@ -65,4 +71,5 @@
     </div>
     @endsection
 </body>
+
 </html>
