@@ -21,7 +21,7 @@
 
 
 <script>
-    window.task = {!! json_encode($task) !!};
+    window.task = {!! json_encode($tasks) !!};
 </script>
 
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
