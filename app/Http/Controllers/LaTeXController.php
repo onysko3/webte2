@@ -42,13 +42,14 @@ class LaTeXController extends Controller
             $equation = isset($eqMatch[1]) ? trim($eqMatch[1]) : '';
 
             // Extract the image path
-            $imgPattern = '/\\\\includegraphics\\{(.*?)\\}/s';
+            $imgPattern = '/\\\\includegraphics\\{zadanie99(.*?)\\}/s';
             preg_match($imgPattern, $taskContent, $imgMatch);
-            $imagePath = isset($imgMatch[1]) ? $imgMatch[1] : '';
+            $imagePath = isset($imgMatch[1]) ? '/images' . $imgMatch[1] : '';
+
 
             // Append the equation to the task description if it exists
             if ($equation !== '') {
-                $taskDescription .= ' ' . $equation;
+                $taskDescription .= ' $' . $equation . '$';
             }
 
             $tasks[] = [
