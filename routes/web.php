@@ -32,3 +32,8 @@ Route::get('/teacher/students', [App\Http\Controllers\TeacherController::class, 
 
 Route::get('/teacher/tasks', [App\Http\Controllers\TeacherController::class, 'tasks'])->name('teacher.tasks')->middleware('is_teacher');
 
+Route::get('instructions', 'App\Http\Controllers\InstructionController@show')->name('instructions');
+
+Route::post('view-pdf', 'App\Http\Controllers\PDFController@generate')->name('view-pdf');
+
+Route::put('/sets/{set}', 'App\Http\Controllers\SetController@update')->name('sets.update')->middleware('is_teacher');

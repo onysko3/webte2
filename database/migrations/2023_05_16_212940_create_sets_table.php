@@ -18,7 +18,7 @@ return new class extends Migration
             //ucitel ju musi zaskrtnut, aby bola dostupna (az potom sa pozera na datum)
             $table->integer('points')->nullable();
             $table->dateTime('available_from')->nullable();
-            $table->dateTime('available-to')->nullable();
+            $table->dateTime('available_to')->nullable();
         });
     }
 

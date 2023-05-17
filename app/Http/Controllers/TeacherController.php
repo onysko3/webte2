@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\UserTask;
+use App\Models\Tasks_Student;
 
 class TeacherController extends Controller
 {
     public function students()
 {
     $students = DB::table('users AS u')
-        ->leftJoin('user_task AS ut', 'u.id', '=', 'ut.user_id')
+        ->leftJoin('tasks_student AS ut', 'u.id', '=', 'student_id')
         ->where('u.is_teacher', 0)
         ->select('u.name',
             DB::raw('COUNT(ut.generated_at) AS total_generated'),
-            DB::raw('SUM(CASE WHEN ut.result IS NOT NULL THEN 1 ELSE 0 END) AS total_submitted'),
-            DB::raw('SUM(CASE WHEN ut.result IS NOT NULL THEN ut.points ELSE 0 END) AS total_points'),)
+            DB::raw('SUM(CASE WHEN ut.submitted_result IS NOT NULL THEN 1 ELSE 0 END) AS total_submitted'),
+            DB::raw('SUM(CASE WHEN ut.submitted_result IS NOT NULL THEN ut.point_obtained ELSE 0 END) AS total_points'),)
         ->groupBy('u.id', 'u.name')
         ->get();
 
@@ -25,17 +26,7 @@ class TeacherController extends Controller
 
 public function tasks()
 {
-    $tasks = UserTask::select(
-            'user_task.id',
-            'users.name as student_name',
-            'user_task.set_id',
-            'user_task.task_number',
-            'user_task.result',
-            DB::raw('IF(user_task.result IS NOT NULL, "Yes", "No") as submitted'),
-            'user_task.points',
-            DB::raw('IF(user_task.result IS NULL OR (user_task.result IS NOT NULL AND user_task.points = 0), "Incorrect", "Correct") as task_status'),
-        )
-        ->leftJoin('users', 'users.id', '=', 'user_task.user_id')
+    $tasks = Tasks_Student::with('task')
         ->get();
 
     return view('teacher.tasks', ['tasks' => $tasks]);
