@@ -11,17 +11,16 @@
     <link rel="stylesheet" href="https://editor.codecogs.com/assets/css/eqneditor.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
 </head>
-<body>
+<body id="body">
 
 <div id="task" class="container">
     <p id="math"></p>
 </div>
-<br>
 <div id="editorBody" class="container"></div>
 
 
 <script>
-    window.task = {!! json_encode($tasks) !!};
+    window.task = {!! json_encode($task) !!};
 </script>
 
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
@@ -29,6 +28,9 @@
 <script src="https://editor.codecogs.com/assets/js/eqneditor.api.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/nerdamer.core.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src=
+            "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js">
+</script>
 <script src="scripts/student/editor.js"></script>
 
 

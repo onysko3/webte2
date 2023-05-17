@@ -13,9 +13,10 @@ class StudentController extends Controller
     {
         //TODO z requestu vytiahnuť ktora uloha sa zobrazi
 
-        $user = User::find(1);
-        $tasks = $user->tasks;
-        return view('student/editor', ['user' => $user, 'tasks' => $tasks]);
+        //$user = User::find(1);
+        //$tasks = $user->tasks;
+        $task = Task::find(11);
+        return view('student/editor', ['task' => $task]);
     }
 
     public function getTask(Request $request){
