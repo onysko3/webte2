@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('sada', 128);
-            $table->string('task', 256);
-            $table->string('img_path', 128)->default(null);
-            $table->string('results', 256);
+            $table->unsignedBigInteger('set_id');
+            $table->string('task_name')->unique();    //cislo v section v subore (hodi sa pre zobrazenie ulohy v prehladoch)
+            $table->string('assignment');
+            $table->string('img_name')->nullable();
+            $table->string('results');
+
+            $table->foreign('set_id')->references('id')->on('sets')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

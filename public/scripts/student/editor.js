@@ -4,6 +4,7 @@ let textarea;
 document.addEventListener("DOMContentLoaded", function() {
 
     let showTask = document.getElementById("math");
+    console.log(task);
     showTask.innerText = task.task;
 
     renderMathInElement(document.getElementById("math"), {

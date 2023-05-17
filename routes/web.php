@@ -17,5 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/editor', [StudentController::class, 'getTask']);
+Route::get('/editor', [StudentController::class, 'getTaskByStudent']);
+
 
