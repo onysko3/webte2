@@ -11,27 +11,25 @@
     <table id="tasks-table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Student Name</th>
-            <th>Set ID</th>
-            <th>Task Number</th>
-            <th>Result</th>
-            <th>Submitted</th>
-            <th>Is correct</th>
-            <th>Points</th>
+            <th>Student</th>
+            <th>Task</th>
+            <th>Generated At</th>
+            <th>Submitted At</th>
+            <th>Submitted Result</th>
+            <th>Is Result Correct</th>
+            <th>Points Obtained</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($tasks as $task)
+        @foreach ($tasks as $task)
         <tr>
-            <td>{{ $task->id }}</td>
-            <td>{{ $task->student_name }}</td>
-            <td>{{ $task->set_id }}</td>
-            <td>{{ $task->task_number }}</td>
-            <td>{{ $task->result }}</td>
-            <td>{{ $task->submitted }}</td>
-            <td>{{ $task->task_status }}</td>
-            <td>{{ $task->points }}</td>
+            <td>{{ $task->student->name }}</td>
+            <td>{{ $task->task->task_name }}</td>
+            <td>{{ $task->generated_at }}</td>
+            <td>{{ $task->submitted_at ?? 0 }}</td>
+            <td>{{ $task->submitted_result ?? 0 }}</td>
+            <td>{{ $task->is_result_correct ? 'Yes' : 'No' }}</td>
+            <td>{{ $task->point_obtained ?? 0 }}</td>
         </tr>
         @endforeach
     </tbody>

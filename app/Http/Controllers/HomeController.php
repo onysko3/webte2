@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Set;
 
 class HomeController extends Controller
 {
@@ -32,7 +33,9 @@ class HomeController extends Controller
     }
 
     public function adminHome(){
-        return view('admin-home');
+        $sets = Set::all();
+
+    return view('admin-home', compact('sets'));
     }
 }
 

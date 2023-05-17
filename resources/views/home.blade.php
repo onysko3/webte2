@@ -18,8 +18,10 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                        <h3>Student</h3>
-                    {{ __('You are logged in!') }}
+                        <h3 class="mt-3 d-flex justify-content-center">Student admin panel</h3>
+                    <div class="mt-3 d-flex justify-content-center">
+                    <a href="{{ route('instructions') }}" class="btn btn-primary">View Instructions</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -32,11 +32,8 @@ Route::get('/teacher/students', [App\Http\Controllers\TeacherController::class, 
 
 Route::get('/teacher/tasks', [App\Http\Controllers\TeacherController::class, 'tasks'])->name('teacher.tasks')->middleware('is_teacher');
 
+Route::get('instructions', 'App\Http\Controllers\InstructionController@show')->name('instructions');
 
-Auth::routes();
+Route::post('view-pdf', 'App\Http\Controllers\PDFController@generate')->name('view-pdf');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::put('/sets/{set}', 'App\Http\Controllers\SetController@update')->name('sets.update')->middleware('is_teacher');
