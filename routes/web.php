@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LaTeXController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +32,8 @@ Route::get('/teacher/home', [App\Http\Controllers\HomeController::class, 'adminH
 Route::get('/teacher/students', [App\Http\Controllers\TeacherController::class, 'students'])->name('teacher.students')->middleware('is_teacher');
 
 Route::get('/teacher/tasks', [App\Http\Controllers\TeacherController::class, 'tasks'])->name('teacher.tasks')->middleware('is_teacher');
+Route::get('/parse', [LaTeXController::class, 'showParsedData']);
+
 
 Route::get('instructions', 'App\Http\Controllers\InstructionController@show')->name('instructions');
 
