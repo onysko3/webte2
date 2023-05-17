@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TaskModel extends Model
+class Task extends Model
 {
     use HasFactory;
 
@@ -20,9 +21,10 @@ class TaskModel extends Model
      */
     protected $fillable = [
         'id',
-        'sada',
-        'task',
-        'img_path',
+        'set_id',
+        'task_name',
+        'assignment',
+        'img_name',
         'results',
     ];
 
@@ -41,4 +43,10 @@ class TaskModel extends Model
      */
     protected $casts = [
     ];
+
+    public function set(): BelongsTo
+    {
+        return $this->belongsTo(Set::class);
+    }
+
 }

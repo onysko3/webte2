@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
-            $table->string('file_path');
-            $table->string('images_path')->nullable();
-            $table->integer('points')->change()->nullable();
-            $table->date('available_on')->nullable()->change();
-            $table->timestamps();
+            $table->string('file_name')->unique();
+            $table->boolean('available_to_generate')->default(0); //pri vlozeni sady bude defaultne neotvorena pre studentov,
+            //ucitel ju musi zaskrtnut, aby bola dostupna (az potom sa pozera na datum)
+            $table->integer('points')->nullable();
+            $table->dateTime('available_from')->nullable();
+            $table->dateTime('available-to')->nullable();
         });
     }
 
