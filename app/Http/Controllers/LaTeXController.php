@@ -9,19 +9,11 @@ use App\Models\Task;
 
 class LaTeXController extends Controller
 {
-    function parseLaTeXFile($filePath)
+    function parseLaTeXFile($filePath, $setId)
     {
-        // Read the content of the LaTeX file
         $latexContent = file_get_contents($filePath);
-        $fileName = basename($filePath);
 
-        // Check if a record with the same file name already exists
-        $existingSet = Set::where('file_name', $fileName)->first();
 
-        // If a record exists, retrieve the set_id
-        $setId = $existingSet ? $existingSet->id : null;
-
-        // Extract the task, equation, image, and solution using a regex pattern
         $pattern = '/\\\\section\\*\\{([A-Z0-9]+)\\}.*?\\\\begin\\{task\\}(.*?)\\\\end\\{task\\}.*?\\\\begin\\{solution\\}(?:.*?\\\\begin\\{equation\\*\\}(.*?)\\\\end\\{equation\\*\\})/s';
         preg_match_all($pattern, $latexContent, $matches, PREG_SET_ORDER);
 
@@ -72,28 +64,30 @@ class LaTeXController extends Controller
     }
 
 
-    public function showParsedData()
+    public function showParsedData(Request $request)
     {
-        $folderPath = public_path('files');
-        $filePaths = glob($folderPath . '/*.tex');
+        $request->validate([
+            'file' => 'required|mimes:tex|max:2048'
+        ]);
 
-        $tasks = [];
+        $fileName = $request->file->getClientOriginalName();
 
-        foreach ($filePaths as $filePath) {
-            $fileName = basename($filePath);
-            $setData = [
-                'file_name' => $fileName,
-                'available_to_generate' => true, // Set this value as needed
-                'points' => 0, // Set this value as needed
-                'available_from' => now(), // Set this value as needed
-                'available-to' => now()->addDays(30), // Set this value as needed
-            ];
-            Set::create($setData);
-            $fileTasks = $this->parseLaTeXFile($filePath);
+        // First create the set and get its ID
+        $set = Set::firstOrNew(['file_name' => $fileName]);
 
-            $tasks = array_merge($tasks, $fileTasks);
+        // Check if the set already exists in the database
+        if ($set->exists) {
+            // If it does, redirect back with an error message
+            return redirect()->back()->with('error', 'A set with that file name already exists.');
         }
+        $set->save();
 
-        return view('parsed_data', ['tasks' => $tasks]);
+        $setId = $set->id;
+
+        $fileTempPath = $request->file->getRealPath();
+
+        // Now parse the LaTeX file with the ID
+        $this->parseLaTeXFile($fileTempPath, $setId);
+        return redirect()->back()->with('success', 'File uploaded successfully.');
     }
 }
