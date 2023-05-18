@@ -32,6 +32,11 @@
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
+                        @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                         @endif
                         <h3 class="mt-3 d-flex justify-content-center">Teacher admin panel</h3>
                         <div class="d-flex justify-content-center">
@@ -63,6 +68,18 @@
                                 </div>
                             </form>
                             @endforeach
+                            <div>
+                            <form action="{{ route('upload.file') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="file">Add File</label>
+                                        <input type="file" class="form-control" name="file" id="file">
+                                    </div>
+                                    <div class="d-flex p-2 column justify-content-around">
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
