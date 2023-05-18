@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 
 
+Route::get('/editor', [StudentController::class, 'getTaskByStudent']);
 
 Auth::routes();
 
@@ -32,7 +33,6 @@ Route::get('/teacher/home', [App\Http\Controllers\HomeController::class, 'adminH
 Route::get('/teacher/students', [App\Http\Controllers\TeacherController::class, 'students'])->name('teacher.students')->middleware('is_teacher');
 
 Route::get('/teacher/tasks', [App\Http\Controllers\TeacherController::class, 'tasks'])->name('teacher.tasks')->middleware('is_teacher');
-Route::get('/parse', [LaTeXController::class, 'showParsedData']);
 
 
 Route::get('instructions', 'App\Http\Controllers\InstructionController@show')->name('instructions');
@@ -40,6 +40,8 @@ Route::get('instructions', 'App\Http\Controllers\InstructionController@show')->n
 Route::post('view-pdf', 'App\Http\Controllers\PDFController@generate')->name('view-pdf');
 
 Route::put('/sets/{set}', 'App\Http\Controllers\SetController@update')->name('sets.update')->middleware('is_teacher');
+Route::post('/parse', [LaTeXController::class, 'showParsedData'])->name('upload.file');
+
 
 //student routes
 Route::get('/student/home', [StudentController::class, 'home'])->name('student.home')->middleware('is_student');
