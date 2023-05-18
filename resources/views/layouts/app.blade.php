@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -67,6 +68,12 @@
                                 </div>
                             </li>
                         @endguest
+                        <div class="col-md-4">
+                            <select class="form-control changeLang">
+                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>🇬🇧</option>
+                                <option value="sk" {{ session()->get('locale') == 'sk' ? 'selected' : '' }}>🇸🇰</option>
+                            </select>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -76,5 +83,15 @@
             @yield('content')
         </main>
     </div>
+
+    <script type="text/javascript">
+
+        var url = "{{ route('changeLang') }}";
+
+        $(".changeLang").change(function(){
+            window.location.href = url + "?lang="+ $(this).val();
+        });
+
+    </script>
 </body>
 </html>

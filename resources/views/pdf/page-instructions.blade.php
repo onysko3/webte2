@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <h1>Page Instructions</h1>
+        <h1>{{ __('Page Instructions') }}</h1>
         <p>{{ $content }}</p>
     </div>
 </body>

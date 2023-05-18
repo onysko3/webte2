@@ -14,20 +14,20 @@
     @section('content')
     <div id="mainDiv">
         <div class="text-center">
-            <h3 class="mb-5 fw-bold">Instructions</h3>
+            <h3 class="mb-5 fw-bold">{{ __('Instructions') }}</h3>
         </div>
         <div class="text-center">
-            <h2 class="mb-4 fw-bold">For Teacher</h2>
+            <h2 class="mb-4 fw-bold">{{ __('For Teacher') }}</h2>
             <p>.............</p>
         </div>
         <div class="text-center">
-            <h2 class="mb-4 fw-bold">For Student</h2>
+            <h2 class="mb-4 fw-bold">{{ __('For Student') }}</h2>
             <p>.............</p>
         </div>
         <div class="text-center">
         <form method="POST" action="{{ route('view-pdf') }}">
             @csrf
-            <button type="submit" class="btn btn-primary">Download PDF</button>
+            <button type="submit" class="btn btn-primary">{{ __('Download PDF') }}</button>
         </form>
     </div>
     </div>
