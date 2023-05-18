@@ -38,36 +38,37 @@
                             {{ session('error') }}
                         </div>
                         @endif
-                        <h3 class="mt-3 d-flex justify-content-center">Teacher admin panel</h3>
-                        <div class="d-flex justify-content-center">
-                            <a href="{{ route('teacher.students') }}" class="btn btn-primary mx-2">Table of Students</a>
-                            <a href="{{ route('teacher.tasks') }}" class="btn btn-primary mx-2">Table of Tasks</a>
-                            <a href="{{ route('instructions') }}" class="btn btn-primary mx-2">View Instructions</a>
-                        </div>
-                        <div>
-                            <h2 class="mt-3 d-flex justify-content-center">Max points for Set</h2>
-                            @foreach ($sets as $set)
+                            <h3 class="mt-3 d-flex justify-content-center">{{ __('Teacher admin panel') }}</h3>
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ route('teacher.students') }}" class="btn btn-primary mx-2">{{ __('Table of Students') }}</a>
+                                <a href="{{ route('teacher.tasks') }}" class="btn btn-primary mx-2">{{ __('Table of Tasks') }}</a>
+                                <a href="{{ route('instructions') }}" class="btn btn-primary mx-2">{{ __('View Instructions') }}</a>
+                            </div>
+                            <div>
+                                <h2 class="mt-3 d-flex justify-content-center">{{ __('Max points for Set') }}</h2>
+                        @foreach ($sets as $set)
                             <form action="{{ route('sets.update', $set->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="d-flex p-2 column justify-content-around">
-                                    <p>Set ID: {{ $set->id }}</p>
-                                    <p>File Name: {{ $set->file_name }}</p>
+                                    <p>{{ __('Set ID') }}: {{ $set->id }}</p>
+                                    <p>{{ __('File Name') }}: {{ $set->file_name }}</p>
 
-                                    <label for="points">Points:</label>
+                                    <label for="points">{{ __('Points') }}:</label>
                                     <input type="text" name="points" value="{{ $set->points }}" style="width:40px;">
 
-                                    <label for="available_to_generate">Available to generate:</label>
+                                    <label for="available_to_generate">{{ __('Available to generate') }}:</label>
                                     <input type="checkbox" name="available_to_generate" value="1" {{ $set->available_to_generate ? 'checked' : '' }}>
 
-                                    <label for="available_to">Available form:</label>
+
+                                    <label for="available_from">{{ __('Available from') }}:</label>
                                     <input type="datetime-local" name="available_from" value="{{ $set->available_from ? (new DateTime($set->available_from))->format('Y-m-d\TH:i:s') : '' }}">
 
-                                    <label for="available_to">Available to:</label>
                                     <input type="datetime-local" name="available_to" value="{{ $set->available_to ? (new DateTime($set->available_to))->format('Y-m-d\TH:i:s') : '' }}">
 
-                                    <button class="btn btn-primary" type="submit">Update</button>
+                                    <button class="btn btn-primary" type="submit">{{ __('Update') }}</button>
+
                                 </div>
                             </form>
                             @endforeach
@@ -79,7 +80,7 @@
                                         <input type="file" class="form-control" name="file" id="file">
                                     </div>
                                     <div class="d-flex p-2 column justify-content-around">
-                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Upload') }}</button>
                                     </div>
                                 </form>
                             </div>

@@ -27,6 +27,9 @@ Route::get('/editor', [StudentController::class, 'getTaskByStudent']);
 
 Auth::routes();
 
+Route::get('lang/home', [App\Http\Controllers\LangController::class, 'index']);
+Route::get('lang/change', [App\Http\Controllers\LangController::class, 'change'])->name('changeLang');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/teacher/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('teacher.home')->middleware('is_teacher');

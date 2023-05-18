@@ -8,14 +8,14 @@
     <title>Parsed LaTeX Data</title>
 </head>
 <body>
-    <h1>Parsed LaTeX Data</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Task Code</th>
-                <th>Task Description</th>
-                <th>Image Path</th>
-                <th>Equation</th>
+<h1>{{ __('Parsed LaTeX Data') }}</h1>
+<table>
+    <thead>
+    <tr>
+        <th>{{ __('Task Code') }}</th>
+        <th>{{ __('Task Description') }}</th>
+        <th>{{ __('Image Path') }}</th>
+        <th>{{ __('Equation') }}</th>
             </tr>
         </thead>
         <tbody>
