@@ -27,7 +27,6 @@
             <h2 class="mb-4 fw-bold">{{ __('For Student') }}</h2>
             <p style="max-width: 800px; margin: auto">{!! __('instr_student') !!}</p>        </div>
         <br>
-        </div>
         <div class="text-center">
         <form method="POST" action="{{ route('view-pdf') }}">
             @csrf
