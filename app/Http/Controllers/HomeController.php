@@ -27,7 +27,10 @@ class HomeController extends Controller
     {
         if (auth()->user()->is_teacher) {
             return redirect()->route('teacher.home');
-        } else {
+        }elseif (!auth()->user()->is_teacher){
+            return redirect()->route('student.home');
+        }
+        else {
             return view('home');
         }
     }

@@ -4,8 +4,10 @@ let textarea;
 document.addEventListener("DOMContentLoaded", function() {
 
     let showTask = document.getElementById("math");
+    console.log(id);
     console.log(task);
-    showTask.innerText = task.task;
+    console.log(resultRoute);
+    showTask.innerText = task.assignment;
 
     renderMathInElement(document.getElementById("math"), {
         // customised options
@@ -20,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
         throwOnError : false
     });
 
-    if (task.img_path != null){
+    if (task.img_name != null){
         let showImg = document.createElement("img");
-        showImg.src = task.img_path;
+        showImg.src = task.img_name;
         document.getElementById("task").append(showImg);
     }
 
@@ -37,12 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-let result = 'y(t)=\\dfrac{1}{12} - \\dfrac{3}{2}e^{-t} + \\dfrac{1}{6}e^{-3t} + \\dfrac{1}{4}e^{-4t} = 0.0833 -1.5 e^{-t} + 0.1666 e^{-3t} + 0.25 e^{-4t}';
-result = result.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
-let results = result.split("=");
-for (let i = 0; i<3; i++){
-    results[i] = nerdamer.convertFromLaTeX(results[i]);
-}
 //result = nerdamer.convertFromLaTeX(result);
 
 //result = nerdamer(result.text('simplify'));
@@ -75,27 +71,72 @@ function createEditor(){
     button.setAttribute("type", "button");
     button.classList.add("btn");
     button.classList.add("btn-danger");
-    button.setAttribute("onclick", "getEq()");
-    button.innerText = "Odoslať riešenie"
+    //button.setAttribute("onclick", "resultEquals(e)");
+    button.addEventListener('click', (e) => resultEquals(e))
+    button.innerText = "Odoslať riešenie";
     editorDiv.append(button);
     document.getElementById("editorBody").append(editorDiv);
 
 }
 
-function getEq(){
-    console.log(results);
+function resultEquals(e){
+    e.preventDefault();
 
-    let resultInput = document.getElementById("latexInput").innerText.toString();
-    resultInput = resultInput.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
-    resultInput = nerdamer.convertFromLaTeX(resultInput);
+    //let result = 'y(t)=\\dfrac{1}{12} - \\dfrac{3}{2}e^{-t} + \\dfrac{1}{6}e^{-3t} + \\dfrac{1}{4}e^{-4t} = 0.0833 -1.5 e^{-t} + 0.1666 e^{-3t} + 0.25 e^{-4t}';
+    let correctResults = task.results;
+    correctResults = correctResults.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
+    let results = correctResults.split("=");
+    for (let i = 0; i<results.length; i++){
+        //console.log(results[i]);
+        results[i] = nerdamer.convertFromLaTeX(results[i]);
+
+    }
+
+    let resultInputConv = document.getElementById("latexInput").innerText.toString();
+    let resultInput = resultInputConv;
+    resultInputConv = resultInputConv.replace(/\\dfrac/g, "\\frac"); // replace \dfrac with frac
+    resultInputConv = nerdamer.convertFromLaTeX(resultInputConv);
 
 
-    console.log(results[1]);
-    console.log(resultInput);
+
+    let w = false;
     for (let i = 0; i < results.length; i++){
-        if (resultInput.eq(results[i])){
+        if (resultInputConv.eq(results[i])){
             console.log("correct " + i);
+            w = true;
+            break;
         }
     }
+    if (!w){
+        console.log("incorrect");
+    }
+
+
+    var cookie = $.cookie("laravel_session");
+    console.log(cookie);
+
+    /*fetch(resultRoute, {
+        method: 'POST',
+        body: {
+            submitted_result: resultInput,
+            is_result_correct: w
+        }
+    }).then(response => response.json())
+        .then(data => {
+            window.location.href = data.redirect;
+        })
+        .catch(error => {
+            // Handle any errors
+        });*/
+
+    console.log(resultRoute);
+   axios.post(resultRoute, {
+       _token: token,
+       submitted_result: resultInput,
+        is_result_correct: w,
+    }).then((response) => {
+        console.log(response)
+            window.location.href = response.request.responseURL;
+        });
 
 }

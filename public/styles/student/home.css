@@ -1,0 +1,25 @@
+#generate-btn{
+    display: none;
+    margin-top: 1rem;
+}
+
+#form-check{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.check-div{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.checkBoxes, .form-check-label{
+    font-size: 15px;
+}
+
+#sets_gen{
+    margin-top: 2rem;
+}

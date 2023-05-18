@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Set extends Model
 {
@@ -42,4 +43,9 @@ class Set extends Model
      */
     protected $casts = [
     ];
+
+    public function tasks (): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }
