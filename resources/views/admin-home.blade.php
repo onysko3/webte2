@@ -32,11 +32,11 @@
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
+                        @endif
                         @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
-                    @endif
                         @endif
                         <h3 class="mt-3 d-flex justify-content-center">Teacher admin panel</h3>
                         <div class="d-flex justify-content-center">
@@ -56,10 +56,13 @@
                                     <p>File Name: {{ $set->file_name }}</p>
 
                                     <label for="points">Points:</label>
-                                    <input type="text" name="points" value="{{ $set->points }}">
+                                    <input type="text" name="points" value="{{ $set->points }}" style="width:40px;">
 
                                     <label for="available_to_generate">Available to generate:</label>
                                     <input type="checkbox" name="available_to_generate" value="1" {{ $set->available_to_generate ? 'checked' : '' }}>
+
+                                    <label for="available_to">Available form:</label>
+                                    <input type="datetime-local" name="available_from" value="{{ $set->available_from ? (new DateTime($set->available_from))->format('Y-m-d\TH:i:s') : '' }}">
 
                                     <label for="available_to">Available to:</label>
                                     <input type="datetime-local" name="available_to" value="{{ $set->available_to ? (new DateTime($set->available_to))->format('Y-m-d\TH:i:s') : '' }}">

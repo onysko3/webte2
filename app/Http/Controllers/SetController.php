@@ -11,6 +11,7 @@ class SetController extends Controller
     {
         $set->points = $request->input('points');
         $set->available_to_generate = $request->has('available_to_generate') ? 1 : 0;
+        $set->available_from = $request->input('available_from');
         $set->available_to = $request->input('available_to');
 
         $set->save();
