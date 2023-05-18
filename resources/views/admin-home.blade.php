@@ -65,6 +65,7 @@
                                     <label for="available_from">{{ __('Available from') }}:</label>
                                     <input type="datetime-local" name="available_from" value="{{ $set->available_from ? (new DateTime($set->available_from))->format('Y-m-d\TH:i:s') : '' }}">
 
+                                    <label for="available_to">{{ __('Available to') }}:</label>
                                     <input type="datetime-local" name="available_to" value="{{ $set->available_to ? (new DateTime($set->available_to))->format('Y-m-d\TH:i:s') : '' }}">
 
                                     <button class="btn btn-primary" type="submit">{{ __('Update') }}</button>
