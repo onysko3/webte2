@@ -11,13 +11,13 @@
     <table id="tasks-table">
     <thead>
         <tr>
-            <th>Student</th>
-            <th>Task</th>
-            <th>Generated At</th>
-            <th>Submitted At</th>
-            <th>Submitted Result</th>
-            <th>Is Result Correct</th>
-            <th>Points Obtained</th>
+            <th>{{ __('Student') }}</th>
+            <th>{{ __('Task') }}</th>
+            <th>{{ __('Generated At') }}</th>
+            <th>{{ __('Submitted At') }}</th>
+            <th>{{ __('Submitted Result') }}</th>
+            <th>{{ __('Is Result Correct') }}</th>
+            <th>{{ __('Points Obtained') }}</th>
         </tr>
     </thead>
     <tbody>

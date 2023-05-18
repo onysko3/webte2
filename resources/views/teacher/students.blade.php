@@ -11,10 +11,10 @@
         <table id="students-table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Total Generated</th>
-                    <th>Total Submitted</th>
-                    <th>Total Points</th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Total Generated') }}</th>
+                    <th>{{ __('Total Submitted') }}</th>
+                    <th>{{ __('Total Points') }}</th>
                 </tr>
             </thead>
             <tbody>

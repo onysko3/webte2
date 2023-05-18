@@ -1,13 +1,13 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Student Name</th>
-            <th>Set ID</th>
-            <th>Task Number</th>
-            <th>Result</th>
-            <th>Submitted</th>
-            <th>Points</th>
+            <th>{{ __('ID') }}</th>
+            <th>{{ __('Student Name') }}</th>
+            <th>{{ __('Set ID') }}</th>
+            <th>{{ __('Task Number') }}</th>
+            <th>{{ __('Result') }}</th>
+            <th>{{ __('Submitted') }}</th>
+            <th>{{ __('Points') }}</th>
         </tr>
     </thead>
     <tbody>
