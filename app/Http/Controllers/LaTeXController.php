@@ -36,7 +36,7 @@ class LaTeXController extends Controller
             // Extract the image path
             $imgPattern = '/\\\\includegraphics\\{zadanie99\\/images(.*?)\\}/s';
             preg_match($imgPattern, $taskContent, $imgMatch);
-            $imagePath = isset($imgMatch[1]) ? '/images' . $imgMatch[1] : '';
+            $imagePath = isset($imgMatch[1]) ? '/storage/images' . $imgMatch[1] : '';
 
 
             // Append the equation to the task description if it exists
@@ -75,7 +75,7 @@ class LaTeXController extends Controller
         // First create the set and get its ID
         $set = Set::firstOrNew(['file_name' => $fileName]);
 
-        // Check if the set already exists in the database
+        // Check if the set already exists in the    database
         if ($set->exists) {
             // If it does, redirect back with an error message
             return redirect()->back()->with('error', 'A set with that file name already exists.');
