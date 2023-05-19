@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -15,6 +16,8 @@ class PDFController extends Controller
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4');
         $dompdf->render();
+        $o = new Options(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        $dompdf->setOptions($o);
         $dompdf->stream('instructions.pdf');
 }
 }
