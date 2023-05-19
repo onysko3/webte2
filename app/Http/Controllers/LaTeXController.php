@@ -34,7 +34,7 @@ class LaTeXController extends Controller
             $equation = isset($eqMatch[1]) ? trim($eqMatch[1]) : '';
 
             // Extract the image path
-            $imgPattern = '/\\\\includegraphics\\{zadanie99(.*?)\\}/s';
+            $imgPattern = '/\\\\includegraphics\\{zadanie99\\/images(.*?)\\}/s';
             preg_match($imgPattern, $taskContent, $imgMatch);
             $imagePath = isset($imgMatch[1]) ? '/images' . $imgMatch[1] : '';
 
@@ -83,7 +83,8 @@ class LaTeXController extends Controller
         $set->save();
 
         $setId = $set->id;
-
+        $request->file->storeAs('/files', $fileName);
+        
         $fileTempPath = $request->file->getRealPath();
 
         // Now parse the LaTeX file with the ID

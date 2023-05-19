@@ -85,6 +85,18 @@
                                     </div>
                                 </form>
                             </div>
+                            <div>
+                            <form action="{{ route('upload.image') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="file">Add Image if needed</label>
+                                        <input type="file" class="form-control" name="file" id="file">
+                                    </div>
+                                    <div class="d-flex p-2 column justify-content-around">
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
