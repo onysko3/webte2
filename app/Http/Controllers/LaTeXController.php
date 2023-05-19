@@ -83,8 +83,8 @@ class LaTeXController extends Controller
         $set->save();
 
         $setId = $set->id;
-        $request->file->storeAs('/files', $fileName);
-        
+        $request->file->storeAs('/public/files', $fileName);
+
         $fileTempPath = $request->file->getRealPath();
 
         // Now parse the LaTeX file with the ID
