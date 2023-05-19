@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\LaTeXController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Redirect;
 
 /*
@@ -51,3 +52,4 @@ Route::get('/student/home', [StudentController::class, 'home'])->name('student.h
 Route::post('/student/generate', [StudentController::class, 'generateTasks'])->name('student.generate')->middleware('is_student');
 Route::get('/student/editor/{id}', [StudentController::class, 'getTaskByStudent'])->name('student.editor')->middleware('is_student');
 Route::post('/student/editor/{id}/result', [StudentController::class, 'insertResult'])->name('student.result')->middleware('is_student');
+Route::post('upload-image', [ImageController::class ,"uploadImage"])->name('upload.image');
