@@ -65,7 +65,13 @@ class StudentController extends Controller
         //$user = User::find(1);
         //$tasks = $user->tasks;
         $task_student = Tasks_Student::find($id);
+        if ($task_student == null){
+            return redirect('home');
+        }
         if ($task_student->student_id !== auth()->user()->id){
+            return redirect('home');
+        }
+        if ($task_student->submitted_at !== null){
             return redirect('home');
         }
         $task = $task_student->task;
@@ -78,6 +84,15 @@ class StudentController extends Controller
         //TODO z requestu vytiahnuť ktora uloha sa zobrazi
 
         $task  = Tasks_Student::find($id);
+        if ($task == null){
+            return redirect('home');
+        }
+        if ($task->student_id !== auth()->user()->id){
+            return redirect('home');
+        }
+        if ($task->submitted_at !== null){
+            return redirect('home');
+        }
         $task->submitted_at = date('Y-m-d H:i:s');
         $task->submitted_result = $request->input('submitted_result');
         $task->is_result_correct = $request->input('is_result_correct');
