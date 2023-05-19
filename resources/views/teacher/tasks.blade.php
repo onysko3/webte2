@@ -8,9 +8,9 @@
     @extends('layouts.app')
 
     @section('content')
-    <table id="tasks-table">
-    <thead>
-        <tr>
+        <table style="width: 900px; margin: auto;" class="table table-striped" id="students-table">
+            <thead>
+            <tr style="background-color: black; color: white;">
             <th>{{ __('Student') }}</th>
             <th>{{ __('Task') }}</th>
             <th>{{ __('Generated At') }}</th>

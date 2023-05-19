@@ -19,14 +19,17 @@
         <div class="text-center">
             <h3 class="mb-5 fw-bold">{{ __('Instructions') }}</h3>
         </div>
+        <hr>
         <div class="text-center">
             <h2 class="mb-4 fw-bold">{{ __('For Teacher') }}</h2>
             <p style="max-width: 800px; margin: auto">{!! __('instr_teacher') !!}</p>        </div>
         <br>
+        <hr>
         <div class="text-center">
             <h2 class="mb-4 fw-bold">{{ __('For Student') }}</h2>
             <p style="max-width: 800px; margin: auto">{!! __('instr_student') !!}</p>        </div>
         <br>
+        <hr>
         <div class="text-center">
         <form method="POST" action="{{ route('view-pdf') }}">
             @csrf

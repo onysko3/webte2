@@ -8,9 +8,9 @@
     @extends('layouts.app')
 
     @section('content')
-        <table id="students-table">
+        <table style="width: 700px; margin: auto;" class="table table-striped" id="students-table">
             <thead>
-                <tr>
+                <tr style="background-color: black; color: white;">
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Total Generated') }}</th>
                     <th>{{ __('Total Submitted') }}</th>

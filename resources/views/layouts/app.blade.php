@@ -43,13 +43,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a style="min-width: 140px;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a  style="min-width: 140px;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -73,8 +73,8 @@
                         @endguest
                         <div class="col-md-4">
                             <select class="form-control changeLang">
-                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>🇬🇧</option>
-                                <option value="sk" {{ session()->get('locale') == 'sk' ? 'selected' : '' }}>🇸🇰</option>
+                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>🇬🇧 EN</option>
+                                <option value="sk" {{ session()->get('locale') == 'sk' ? 'selected' : '' }}>🇸🇰 SK</option>
                             </select>
                         </div>
                     </ul>

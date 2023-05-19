@@ -46,38 +46,42 @@
                             </div>
                             <div>
                                 <h2 class="mt-3 d-flex justify-content-center">{{ __('Max points for Set') }}</h2>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">{{ __('ID') }}:</th>
+                                        <th scope="col">{{ __('File Name') }}:</th>
+                                        <th scope="col">{{ __('Points') }}</th>
+                                        <th scope="col">{{ __('Available to generate') }}</th>
+                                        <th scope="col">{{ __('Available from') }}</th>
+                                        <th scope="col">{{ __('Available to') }}</th>
+                                        <th scope="col">{{ __('Action') }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
                         @foreach ($sets as $set)
-                            <form action="{{ route('sets.update', $set->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
+                            <tr>
+                                <form action="{{ route('sets.update', $set->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
 
-                                <div class="d-flex p-2 column justify-content-around">
-                                    <p>{{ __('Set ID') }}: {{ $set->id }}</p>
-                                    <p>{{ __('File Name') }}: {{ $set->file_name }}</p>
+                                <td>{{ $set->id }}</td>
+                                <td>{{ $set->file_name }}</td>
+                                <td><input class="form-control" type="text" name="points" value="{{ $set->points }}" style="width:40px;"></td>
+                                    <td><input type="checkbox" name="available_to_generate" value="1" {{ $set->available_to_generate ? 'checked' : '' }}></td>
+                                    <td><input style="width: 170px;" class="form-control" type="datetime-local" name="available_from" value="{{ $set->available_from ? (new DateTime($set->available_from))->format('Y-m-d\TH:i:s') : '' }}"></td>
+                                    <td><input style="width: 170px;" class="form-control" type="datetime-local" name="available_to" value="{{ $set->available_to ? (new DateTime($set->available_to))->format('Y-m-d\TH:i:s') : '' }}"></td>
+                                    <td><button class="btn btn-primary" type="submit">{{ __('Update') }}</button></td>
+                                </form>
+                            </tr>
 
-                                    <label for="points">{{ __('Points') }}:</label>
-                                    <input type="text" name="points" value="{{ $set->points }}" style="width:40px;">
-
-                                    <label for="available_to_generate">{{ __('Available to generate') }}:</label>
-                                    <input type="checkbox" name="available_to_generate" value="1" {{ $set->available_to_generate ? 'checked' : '' }}>
-
-
-                                    <label for="available_from">{{ __('Available from') }}:</label>
-                                    <input type="datetime-local" name="available_from" value="{{ $set->available_from ? (new DateTime($set->available_from))->format('Y-m-d\TH:i:s') : '' }}">
-
-                                    <label for="available_to">{{ __('Available to') }}:</label>
-                                    <input type="datetime-local" name="available_to" value="{{ $set->available_to ? (new DateTime($set->available_to))->format('Y-m-d\TH:i:s') : '' }}">
-
-                                    <button class="btn btn-primary" type="submit">{{ __('Update') }}</button>
-
-                                </div>
-                            </form>
                             @endforeach
+                                    </tbody>
+                                </table>
                             <div>
                             <form action="{{ route('upload.file') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="file">Add File</label>
                                         <input type="file" class="form-control" name="file" id="file">
                                     </div>
                                     <div class="d-flex p-2 column justify-content-around">
@@ -89,11 +93,11 @@
                             <form action="{{ route('upload.image') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="file">Add Image if needed</label>
+                                        <label class="ms-auto me-auto" for="file">Add Image if needed</label>
                                         <input type="file" class="form-control" name="file" id="file">
                                     </div>
                                     <div class="d-flex p-2 column justify-content-around">
-                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Upload') }}</button>
                                     </div>
                                 </form>
                             </div>

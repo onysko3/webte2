@@ -18,14 +18,14 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <h3 class="mt-3 d-flex justify-content-center">Student admin panel</h3>
+                        <h3 class="mt-3 d-flex justify-content-center">{{ __('Student admin panel') }}</h3>
                         <div class="mt-3 d-flex justify-content-center">
-                            <a href="{{ route('instructions') }}" class="btn btn-primary">View Instructions</a>
+                            <a href="{{ route('instructions') }}" class="btn btn-primary">{{ __('View Instructions') }}</a>
                         </div>
                         <div id="sets_gen">
-                            <h5>Aktuálne dostupné sady na genrovanie príkladov</h5>
+                            <h5>{{ __('Avaliable task sets') }}</h5>
                             @if(count($sets) == 0)
-                                <p>No sets available</p>
+                                <p>{{ __('No sets are avaliable') }}</p>
                             @else
                                 <form action="{{ route('student.generate') }}" method="POST">
                                     @csrf
@@ -37,21 +37,21 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <button type="submit" class="btn btn-secondary" id="generate-btn">Generovať príklady</button>
+                                    <button type="submit" class="btn btn-secondary" id="generate-btn">{{ __('Generate tasks') }}</button>
                                 </form>
                             @endif
                         </div>
                             <div class="container ml-4 mp-4 mt-4 mb-4">
-                                <h2>Prehľad vašich úloh</h2>
+                                <h2>{{ __('Your tasks') }}</h2>
                                 <table id="table" class="hover row-border" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Sada</th>
-                                        <th>Úloha</th>
-                                        <th>Vygenerovaná</th>
-                                        <th>Odovzdaná</th>
-                                        <th>Akcia</th>
+                                        <th>{{ __('ID') }}</th>
+                                        <th>{{ __('Set') }}</th>
+                                        <th>{{ __('Task') }}</th>
+                                        <th>{{ __('Generated') }}</th>
+                                        <th>{{ __('Passed') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
