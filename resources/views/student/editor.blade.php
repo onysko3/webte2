@@ -22,7 +22,6 @@
 
 <script>
     var resultRoute = '{{ route('student.result', $id) }}';
-    var token = '{{ csrf_token() }}';
 </script>
 <script>
     window.task = {!! json_encode($task) !!};
